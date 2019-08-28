@@ -80,6 +80,7 @@ test:
 #
 production:
   <<: *default
-  database: compras_production
-  username: compras
-  password: <%= ENV['COMPRAS_DATABASE_PASSWORD'] %>
+  database: compras
+  username: postgres
+  host: db
+  password:
