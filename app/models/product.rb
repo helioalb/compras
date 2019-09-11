@@ -1,11 +1,14 @@
 class Product < ApplicationRecord
   validates :name, length: { minimum: 5, maximum: 50 }
   validates :price, numericality: { greater_than: 0 }
-  validate :barcode_dv
+  validates :barcode, presence: false
+  validate :barcode_check_digit
 
   private
 
-  def barcode_dv
+  def barcode_check_digit
+    return if barcode.blank?
+
     array = barcode.split('').map(&:to_i)
     dv = array.pop
 

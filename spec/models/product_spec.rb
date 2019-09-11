@@ -18,6 +18,10 @@ RSpec.describe Product, type: :model do
   end
 
   describe '#barcode' do
+    context 'when is a empty barcode' do
+      it { expect(FactoryBot.build(:product, barcode: '')).to be_valid }
+    end
+
     context 'when is a valid barcode' do
       it { expect(FactoryBot.build(:product)).to be_valid }
     end
