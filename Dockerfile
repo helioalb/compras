@@ -13,7 +13,7 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
     && apt-get update -qq && apt-get install -y yarn
 
 ENV RAILS_ROOT /var/www/compras
-RUN mkdir -p $RAILS_ROOT
+RUN mkdir -p $RAILS_ROOT/tmp/pids
 
 WORKDIR $RAILS_ROOT
 
@@ -34,4 +34,4 @@ ENTRYPOINT ["entrypoint.sh"]
 
 EXPOSE 3000
 
-CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]
+CMD ["bin/bundle", "exec", "puma", "-C", "config/puma.rb"]
